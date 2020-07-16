@@ -6,63 +6,41 @@
  * @desc Visual core code
  */
 
-/**
- * BiliOB-Watcher
- * 
- * @author FlyingSky-CN
- */
+// import * as d3 from 'd3';
+// require("./stylesheet.css");
 
-var globalData = [];
-
-/**
- * 读取 CSV 文件
- */
 d3.select("#inputfile").on("change", getCsv);
 function getCsv() {
-    var file1 = new FileReader();
-    file1.readAsText(this.files[0], config.encoding);
-    file1.onload = function () {
-        globalData.push(
-            d3.csvParse(this.result)
-        )
-    }
-    var file2 = new FileReader();
-    file2.readAsText(this.files[1], config.encoding);
-    file2.onload = function () {
-        globalData.push(
-            d3.csvParse(this.result)
-        )
-    }
-    setTimeout('visual()', 1000)
-}
-
-function visual() {
     d3.select("#inputfile").attr("hidden", true);
-    draw(globalData[0], "#svg1");
-    draw(globalData[1], "#svg2");
-}
+    var r = new FileReader();
+    r.readAsText(this.files[0], config.encoding);
+    r.onload = function () {
+        //读取完成后，数据保存在对象的result属性中
+        var data = d3.csvParse(this.result);
+        try {
+            draw(data);
+        } catch (error) {
+            alert(error);
+        }
+    };
+};
 
-/**
- * 绘制
- * 
- * @param {array} data 数据
- * @param {string} svgDom 绘制节点
- */
-function draw(data, svgDom) {
-
-    /**
-     * 时间节点 (Unique)
-     */
+function draw(data) {
     var date = [];
     data.forEach(element => {
         if (date.indexOf(element["date"]) == -1) {
             date.push(element["date"]);
         }
     });
+    console.log(date);
     let rate = [];
     var auto_sort = config.auto_sort;
-    var time = auto_sort ? (date.sort((x, y) => new Date(x) - new Date(y))) : date;
-
+    if (auto_sort) {
+        var time = date.sort((x, y) => new Date(x) - new Date(y));
+    } else {
+        var time = date;
+    }
+    console.log(time);
     var use_semilogarithmic_coordinate = config.use_semilogarithmic_coordinate;
     var big_value = config.big_value;
     var divide_by = config.divide_by;
@@ -162,7 +140,7 @@ function draw(data, svgDom) {
     var currentdate = time[0].toString();
     var currentData = [];
     var lastname;
-    const svg = d3.select(svgDom);
+    const svg = d3.select("svg");
 
     const width = svg.attr("width");
     const height = svg.attr("height");

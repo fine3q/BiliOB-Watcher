@@ -1,7 +1,7 @@
-.topLabel {
-    display: none;
-}
-
 .dateLabel {
     font-size: 40pt;
+}
+
+.topLabel, #svg1 .dateLabel, #svg2 .growth {
+    display: none;
 }
