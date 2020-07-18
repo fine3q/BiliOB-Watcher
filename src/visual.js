@@ -19,27 +19,32 @@ var globalData = [];
  */
 d3.select("#inputfile").on("change", getCsv);
 function getCsv() {
-    var file1 = new FileReader();
-    file1.readAsText(this.files[0], config.encoding);
-    file1.onload = function () {
-        globalData.push(
-            d3.csvParse(this.result)
-        )
+    if (this.files.length !== 2) return;
+    /**
+     * Load file into globalData
+     * 
+     * @param {Blob} file 
+     * @param {Function} callback 
+     */
+    const readFile = (file, callback) => {
+        var reader = new FileReader();
+        reader.readAsText(file, config.encoding);
+        reader.onload = function () {
+            globalData.push(d3.csvParse(this.result));
+            callback();
+            return;
+        }
     }
-    var file2 = new FileReader();
-    file2.readAsText(this.files[1], config.encoding);
-    file2.onload = function () {
-        globalData.push(
-            d3.csvParse(this.result)
-        )
-    }
-    setTimeout('visual()', 1000)
+    readFile(this.files[0], () => {
+        readFile(this.files[1], visual)
+    })
 }
 
 function visual() {
+    console.log("[globalData]", globalData)
     d3.select("#inputfile").attr("hidden", true);
-    draw(globalData[0], "#svg1");
-    draw(globalData[1], "#svg2");
+    draw(globalData[0], "#svg1", 0);
+    draw(globalData[1], "#svg2", 80);
 }
 
 /**
@@ -48,7 +53,7 @@ function visual() {
  * @param {array} data 数据
  * @param {string} svgDom 绘制节点
  */
-function draw(data, svgDom) {
+function draw(data, svgDom, offoset) {
 
     /**
      * 时间节点 (Unique)
@@ -290,11 +295,15 @@ function draw(data, svgDom) {
         currentData = [];
         indexList = [];
 
+        datakey = 0;
         data.forEach(element => {
             if (element["date"] == date && parseFloat(element["value"]) != 0) {
+                datakey++;
+                element.key = datakey;
                 currentData.push(element);
             }
         });
+        datakey = null;
 
         rate["MAX_RATE"] = 0;
         rate["MIN_RATE"] = 1;
@@ -490,7 +499,7 @@ function draw(data, svgDom) {
                 }
             })
             .attr("fill-opacity", 0)
-            .attr("height", 26)
+            .attr("height", 28)
             .attr("y", 50)
             .style("fill", d => getColor(d))
             .transition("a")
@@ -501,7 +510,7 @@ function draw(data, svgDom) {
             .attr("fill-opacity", 1);
 
         if (config.rounded_rectangle) {
-            d3.selectAll("rect").attr("rx", 13);
+            d3.selectAll("rect").attr("rx", 14);
         }
         if (config.showLabel == true) {
             barEnter
@@ -520,16 +529,7 @@ function draw(data, svgDom) {
                 .attr("x", config.labelx)
                 .attr("y", 20)
                 .attr("text-anchor", "end")
-                .text(function (d) {
-                    if (long) {
-                        return "";
-                    }
-                    if (d.show) {
-                        return d.show.slice(0, config.bar_name_max - 1) + ((d.show.length > config.bar_name_max) ? "..." : "");
-                    } else {
-                        return d.name.slice(0, config.bar_name_max - 1) + ((d.name.length > config.bar_name_max) ? "..." : "");
-                    }
-                });
+                .text(d => offoset + d.key);
         }
 
         if (config.use_img) {
@@ -594,14 +594,15 @@ function draw(data, svgDom) {
             .delay(500 * interval_time)
             .duration(2490 * interval_time)
             .text(function (d) {
-                if (use_type_info) {
-                    return d[divide_by] + "-" + d.show ? d.show : d.name;
+                if (d.show) {
+                    return d.show.slice(0, config.bar_name_max - 1) + ((d.show.length > config.bar_name_max) ? "..." : "");
+                } else {
+                    return d.name.slice(0, config.bar_name_max - 1) + ((d.name.length > config.bar_name_max) ? "..." : "");
                 }
-                return d.show ? d.show : d.name;
             })
             .attr("x", d => {
                 if (long) return 10;
-                return xScale(xValue(d)) - 40;
+                return xScale(xValue(d)) - 20;
             })
             .attr("fill-opacity", function (d) {
                 if (xScale(xValue(d)) - 40 < display_barInfo) {
@@ -610,7 +611,7 @@ function draw(data, svgDom) {
                 return 1;
             })
             .attr("y", 2)
-            .attr("dy", ".5em")
+            .attr("dy", "16")
             .attr("text-anchor", function () {
                 if (long) return "start";
                 return "end";
@@ -699,16 +700,7 @@ function draw(data, svgDom) {
                 })
                 .style("fill", d => getColor(d))
                 .attr("width", d => xScale(xValue(d)))
-                .text(function (d) {
-                    if (long) {
-                        return "";
-                    }
-                    if (d.show) {
-                        return d.show.slice(0, config.bar_name_max - 1) + ((d.show.length > config.bar_name_max) ? "..." : "");
-                    } else {
-                        return d.name.slice(0, config.bar_name_max - 1) + ((d.name.length > config.bar_name_max) ? "..." : "");
-                    }
-                });
+                .text(d => offoset + d.key);
         }
 
         if (!long) {
@@ -736,14 +728,15 @@ function draw(data, svgDom) {
         var barInfo = barUpdate
             .select(".barInfo")
             .text(function (d) {
-                if (use_type_info) {
-                    return d[divide_by] + "-" + d.show ? d.show : d.name;
+                if (d.show) {
+                    return d.show.slice(0, config.bar_name_max - 1) + ((d.show.length > config.bar_name_max) ? "..." : "");
+                } else {
+                    return d.name.slice(0, config.bar_name_max - 1) + ((d.name.length > config.bar_name_max) ? "..." : "");
                 }
-                return d.show ? d.show : d.name;
             })
             .attr("x", d => {
                 if (long) return 10;
-                return xScale(xValue(d)) - 40;
+                return xScale(xValue(d)) - 20;
             })
             .attr("fill-opacity", function (d) {
                 if (xScale(xValue(d)) - 40 < display_barInfo) {

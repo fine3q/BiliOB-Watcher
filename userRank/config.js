@@ -63,7 +63,7 @@
     item_x: 250,
 
     // 时间点间隔时间。
-    interval_time: .5,
+    interval_time: .25,
 
     // 上方文字水平高度。
     text_y: -50,
@@ -105,7 +105,7 @@
 
     // 图表左右上下间距。
     // 注意，left_margin不包括左侧的label，修改数值较小会导致左侧label不显示
-    left_margin: 300,
+    left_margin: 75,
     right_margin: 150,
     top_margin: 140,
     bottom_margin: 40,
@@ -113,7 +113,7 @@
     // 是否开启时间标签。
     dateLabel_switch: true,
     // 时间标签坐标。建议x：1000 y：-50开始尝试，默认位置为x:null,y:null
-    dateLabel_x: 1000,
+    dateLabel_x: 800,
     dateLabel_y: -50,
 
     // 允许大于平均值的条消失时上浮。
@@ -172,5 +172,6 @@
     // limit bar info display length
     bar_name_max: 12,
 
-    use_type_info: false
+    use_type_info: false,
+    
 };

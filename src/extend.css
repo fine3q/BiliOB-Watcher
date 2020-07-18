@@ -5,3 +5,7 @@
 .topLabel, #svg1 .dateLabel, #svg2 .growth {
     display: none;
 }
+
+.barInfo {
+    font-size: 20pt;
+}
