@@ -43,8 +43,8 @@ function getCsv() {
 function visual() {
     console.log("[globalData]", globalData)
     d3.select("#inputfile").attr("hidden", true);
-    draw(globalData[0], "#svg1", 0);
-    draw(globalData[1], "#svg2", 80);
+    draw(globalData[0], "#svg1", config.offoset_left);
+    draw(globalData[1], "#svg2", config.offoset_right);
 }
 
 /**
@@ -52,8 +52,9 @@ function visual() {
  * 
  * @param {array} data 数据
  * @param {string} svgDom 绘制节点
+ * @param {number} offoset 排名偏移
  */
-function draw(data, svgDom, offoset) {
+function draw(data, svgDom, offoset = 0) {
 
     /**
      * 时间节点 (Unique)

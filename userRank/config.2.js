@@ -14,6 +14,9 @@
     // 控制是否显示顶部附加信息文字。
     showMessage: true,
 
+    offoset_left: 0,
+    offoset_right: 20,
+
     // 时间自动排序。
     // !!!请确保打开此项时，使用的是标准日期格式！(即：YYYY-MM-DD HH:MM)
     // 如果关闭，排序顺序为csv表格的时间字段自上而下的出现顺序。
@@ -113,7 +116,7 @@
     // 是否开启时间标签。
     dateLabel_switch: true,
     // 时间标签坐标。建议x：1000 y：-50开始尝试，默认位置为x:null,y:null
-    dateLabel_x: 800,
+    dateLabel_x: 725,
     dateLabel_y: -50,
 
     // 允许大于平均值的条消失时上浮。

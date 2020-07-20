@@ -1,4 +1,4 @@
-cd ../data
+cd data
 
 curl https://api.fsky7.com/BiliOBhelper/fetchRankList?range=1-20 > data-1.csv
 curl https://api.fsky7.com/BiliOBhelper/fetchRankList?range=21-40 > data-2.csv
