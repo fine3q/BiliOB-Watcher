@@ -187,11 +187,11 @@ class Compute
     /**
      * implodeCsv
      */
-    private static function implodeCsv(array $data, array $link, string $endline = "\n")
+    private static function implodeCsv(array $data, array $link, string $endline = "\n", int $date = 0)
     {
         $csv = 'name,show,value,date';
         foreach ($data as $key => $value)
-            $csv .= $endline . $key . ',' . $link[$key] . ',' . $value . ',0';
+            $csv .= $endline . $key . ',' . $link[$key] . ',' . $value . ',' . $date;
         return $csv;
     }
 
