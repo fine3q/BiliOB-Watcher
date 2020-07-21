@@ -8,19 +8,24 @@
  */
 class Compute
 {
-    private $file;
-    private $data;
-    private $rank;
-    private $link;
-    private $time;
-    private $vary;
+    /**
+     * private variable
+     */
+    private string $file;
+    private array $data;
+    private array $rank;
+    private array $link;
+    private array $time;
+    private array $vary;
+
+    /**
+     * public function
+     */
 
     /**
      * __construct
-     * 
-     * @param string $file
      */
-    public function __construct($file)
+    public function __construct(string $file)
     {
         $this->file = $file;
         $this->getCsvData();
@@ -29,10 +34,33 @@ class Compute
         $this->getValuevary();
     }
 
-    public function get($variable)
+    /**
+     * get
+     */
+    public function get(string $variable)
     {
         return isset($this->{$variable}) ?  $this->{$variable} : null;
     }
+
+    /**
+     * dumpVary
+     */
+    public function dumpVary(string $filename, int $num)
+    {
+        return self::dumpCsvFile(
+            self::separateCsv(
+                $this->vary,
+                $num
+            ),
+            $this->link,
+            $filename,
+            true
+        );
+    }
+
+    /**
+     * private function
+     */
 
     /**
      * getCsvData
@@ -49,12 +77,12 @@ class Compute
         $csv = [];
 
         foreach (explode($endline, $data) as $index => $line) {
-            if ($index == 0) $header = explode(',', $line);
+            if ($index == 0)
+                $header = explode(',', $line);
             if ($index > 0) {
                 $array = [];
-                foreach (explode(',', $line) as $key => $value) {
+                foreach (explode(',', $line) as $key => $value)
                     $array[$header[$key]] = $value;
-                }
                 $csv[] = $array;
             }
         }
@@ -98,7 +126,8 @@ class Compute
 
         foreach ($data as $log) {
             $date = $log['date'];
-            if (!in_array($date, $time)) $time[] = $date;
+            if (!in_array($date, $time))
+                $time[] = $date;
         }
         sort($time);
 
@@ -120,7 +149,8 @@ class Compute
             $end_value = null;
             foreach ($time as $tick) {
                 if (!isset($user[$tick])) continue;
-                if ($start_value === null) $start_value = $user[$tick];
+                if ($start_value === null)
+                    $start_value = $user[$tick];
                 $end_value = $user[$tick];
             }
             if ($start_value === null || $end_value === null) continue;
@@ -133,19 +163,20 @@ class Compute
     }
 
     /**
-     * separateCsv
-     * 
-     * @param array $data
-     * @param int $num
-     * @return array
+     * private static function
      */
-    public static function separateCsv($data, $num)
+
+    /**
+     * separateCsv
+     */
+    private static function separateCsv(array $data, int $num)
     {
         $return = [];
         $count = 0;
         arsort($data);
         foreach ($data as $key => $value) {
-            if (!isset($return[$count])) $return[$count] = [];
+            if (!isset($return[$count]))
+                $return[$count] = [];
             $return[$count][$key] = $value;
             if (count($return[$count]) == $num)
                 $count++;
@@ -155,44 +186,34 @@ class Compute
 
     /**
      * implodeCsv
-     * 
-     * @param array $data
-     * @param array $link
-     * @param string $endline
-     * @return string
      */
-    public static function implodeCsv($data, $link, $endline = "\n")
+    private static function implodeCsv(array $data, array $link, string $endline = "\n")
     {
         $csv = 'name,show,value,date';
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $value)
             $csv .= $endline . $key . ',' . $link[$key] . ',' . $value . ',0';
-        }
         return $csv;
     }
 
     /**
      * dumpCsvFile
-     * 
-     * @param array $data
-     * @param array $link
-     * @param string $filename
-     * @param bool $multiple
-     * @return void
      */
-    public static function dumpCsvFile($data, $link, $filename, $multiple = false)
+    private static function dumpCsvFile(array $data, array $link, string $filename, bool $multiple = false)
     {
         if ($multiple) {
+            foreach ($data as $key => $value)
+                file_put_contents($filename . '-' . $key . '.csv', self::implodeCsv($value, $link));
         } else {
             file_put_contents($filename . '.csv', self::implodeCsv($data, $link));
         }
     }
 }
 
+/** @var string */
 define('DATA', __DIR__ . '/data/');
 
 if (!isset($argv[1])) exit('Nothing specified.' . "\n");
 if (!file_exists(DATA . $argv[1])) exit('File not found.' . "\n");
 
 $compute = new Compute(DATA . $argv[1]);
-
-var_dump($compute->get('vary'));
+$compute->dumpVary(DATA . 'dump-vary', 20);
