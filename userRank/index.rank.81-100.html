@@ -4,16 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Historical Data Visualization</title>
     <link rel="stylesheet" href="./source/stylesheet.css">
     <style>
         .dateLabel {
             font-size: 40pt;
         }
 
-        .topLabel,
-        #svg1 .dateLabel,
-        #svg2 .growth {
+        .topLabel {
             display: none;
         }
 
@@ -24,14 +21,13 @@
 </head>
 
 <body>
-    <input type="file" id="inputfile" multiple>
-    <svg width="950" height="1060" id="svg1"></svg>
-    <svg width="950" height="1060" id="svg2"></svg>
+    <input type="file" id="inputfile">
+    <svg width="1900" height="1060"></svg>
 
     <script src="./source/d3.js"></script>
-    <script src="./source/config.global.js"></script>
+    <script src="./source/config.js"></script>
     <script>
-        config.show_mode = 2;
+        config.show_mode = 1;
         config.max_number = 20;
         config.auto_sort = true;
         config.divide_color_by = "show";
@@ -43,10 +39,11 @@
         config.interval_time = .25;
         config.text_x = 1400;
         config.format = ",.1f";
-        config.dateLabel_x = 725;
+        config.dateLabel_x = 1650;
         config.dateLabel_y = -50;
         config.allow_up = true;
         config.bar_name_max = 12;
+        config.offoset_left = 80;
     </script>
     <script src="./source/visual.js"></script>
 </body>

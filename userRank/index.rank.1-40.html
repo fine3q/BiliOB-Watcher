@@ -4,11 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Historical Data Visualization</title>
     <link rel="stylesheet" href="./source/stylesheet.css">
     <style>
         .dateLabel {
-            display: none;
             font-size: 40pt;
         }
 
@@ -25,23 +23,25 @@
 </head>
 
 <body>
-    <input type="file" id="inputfile">
-    <svg width="1900" height="1060"></svg>
+    <input type="file" id="inputfile" multiple>
+    <svg width="950" height="1060" id="svg1"></svg>
+    <svg width="950" height="1060" id="svg2"></svg>
 
     <script src="./source/d3.js"></script>
-    <script src="./source/config.global.js"></script>
+    <script src="./source/config.js"></script>
     <script>
+        config.show_mode = 2;
         config.max_number = 20;
+        config.auto_sort = true;
         config.divide_color_by = "show";
         config.color = {
             flyingsky: "#6cf"
         };
-        config.auto_sort = true;
         config.itemLabel = "BiliOB 观测者排行榜";
         config.typeLabel = '';
         config.interval_time = .25;
         config.text_x = 1400;
-        config.format = ",.2f";
+        config.format = ",.1f";
         config.dateLabel_x = 725;
         config.dateLabel_y = -50;
         config.allow_up = true;
