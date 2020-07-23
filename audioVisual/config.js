@@ -13,7 +13,22 @@ const config = {
     /**
      * 多倍绘制
      */
-    multiple: 5,
+    multiple: 1,
+
+    /**
+     * 柱子间隙
+     */
+    space: 5,
+
+    /**
+     * 圆角
+     */
+    round: false,
+
+    /**
+     * 基础长度倍数
+     */
+    basic: 1.5,
 
     /**
      * fftSize (Fast Fourier Transform) 是快速傅里叶变换，一般情况下是固定值2048。
