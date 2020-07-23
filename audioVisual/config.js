@@ -50,7 +50,7 @@ const config = {
     /**
      * 填充色
      */
-    fill: '#6cf',
+    fill: '#5C5C5C',
 
     /**
      * 绘制方向 (top/center/bottom)
