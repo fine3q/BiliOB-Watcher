@@ -32,6 +32,7 @@ class Watcher
     {
         $this->file = $file;
         $this->getCsvData();
+        $this->formatDate();
         $this->explodeUser();
         $this->getTimeline();
         $this->getValuevary();
@@ -215,6 +216,21 @@ class Watcher
         arsort($vary);
 
         $this->vary = $vary;
+        return;
+    }
+
+    /**
+     * formatDate
+     */
+    private function formatDate()
+    {
+        $data = $this->data;
+        $return = [];
+        foreach ($data as $key => $value) {
+            $value['date'] = substr($value['date'], 0, 16);
+            $return[$key] = $value;
+        }
+        $this->data = $return;
         return;
     }
 

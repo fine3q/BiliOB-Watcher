@@ -48,7 +48,7 @@ const config = {
     /**
      * 时间格式化
      */
-    timeFormat: "%Y-%m-%d %H:%M",
+    timeFormat: "%Y-%m-%d",
 
     /**
      * 倒序，使得最短的条位于最上方
