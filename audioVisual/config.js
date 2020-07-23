@@ -40,7 +40,7 @@ const config = {
     /**
      * 忽略
      */
-    ignore: 16,
+    ignore: 12,
 
     /**
      * 背景颜色
@@ -53,8 +53,8 @@ const config = {
     fill: '#6cf',
 
     /**
-     * 反向
+     * 绘制方向 (top/center/bottom)
      */
-    upsideDown: false,
+    way: 'top',
 
 }

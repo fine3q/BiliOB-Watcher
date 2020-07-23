@@ -8,7 +8,8 @@
 config.width = config.multiple * config.width;
 config.height = config.multiple * config.height;
 
-$('#casvased').attr('width', config.width)
+$('body').css('background', config.background);
+$('#casvased').attr('width', config.width);
 $('#casvased').attr('height', config.height);
 $('#casvased').css('padding', 8 * config.multiple);
 
@@ -100,13 +101,15 @@ var visual = (e) => audioContext.decodeAudioData(e.target.result, (buffer) => {
         }
 
         for (var i = 0; i < bufferLength - config.ignore; i++) {
-            barHeight = dataArray[i];
+            barHeight = dataArray[i] / 255 * (config.height - barWidth * config.basic) + barWidth * config.basic;
             roundRectColor(
                 canvasCtx,
                 x,
-                config.upsideDown ? config.height - barHeight : 0,
+                (config.way === 'top') ? 0 :
+                    (config.way === 'bottom') ? config.height - barHeight :
+                        (config.height - barHeight) / 2,
                 barWidth,
-                barHeight / 255 * (config.height - barWidth * config.basic) + barWidth * config.basic,
+                barHeight,
                 config.round ? barWidth : 0
             );
             x += barWidth + space;
