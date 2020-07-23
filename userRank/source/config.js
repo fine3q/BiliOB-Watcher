@@ -58,12 +58,12 @@ const config = {
     /**
      * 类型根据什么字段区分？如果是name，则关闭类型显示
      */
-    divide_by: "type",
+    divide_by: "name",
 
     /**
      * 颜色根据什么字段区分？
      */
-    divide_color_by: "name",
+    divide_color_by: "show",
 
     /**
      * 字段的值与其对应的颜色值
