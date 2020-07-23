@@ -13,7 +13,7 @@ const config = {
     /**
      * 多倍绘制
      */
-    multiple: 1,
+    multiple: 5,
 
     /**
      * 柱子间隙
@@ -23,7 +23,7 @@ const config = {
     /**
      * 圆角
      */
-    round: false,
+    round: true,
 
     /**
      * 基础长度倍数
@@ -36,6 +36,11 @@ const config = {
      * 值大了，频谱就松散，值小就密集。
      */
     fftSize: 128,
+
+    /**
+     * 忽略
+     */
+    ignore: 16,
 
     /**
      * 背景颜色

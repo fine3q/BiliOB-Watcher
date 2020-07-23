@@ -99,7 +99,7 @@ var visual = (e) => audioContext.decodeAudioData(e.target.result, (buffer) => {
             context.closePath();
         }
 
-        for (var i = 0; i < bufferLength; i++) {
+        for (var i = 0; i < bufferLength - config.ignore; i++) {
             barHeight = dataArray[i];
             roundRectColor(
                 canvasCtx,
