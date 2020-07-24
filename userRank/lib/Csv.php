@@ -25,6 +25,18 @@ class Csv
     }
 
     /**
+     * put
+     * 存储
+     */
+    public static function put(string $file, array $data)
+    {
+        return file_put_contents(
+            $file,
+            self::gen($data)
+        );
+    }
+
+    /**
      * read
      * 读
      */

@@ -1,1 +1,1 @@
-curl https://api.fsky7.com/BiliOBhelper/full-ranklist.json?auth=FlyingSky > data/data-full.csv
+curl https://api.fsky7.com/BiliOBhelper/full-ranklist.json?auth=FlyingSky > data/full-ranklist.json

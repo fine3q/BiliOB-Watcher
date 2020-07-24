@@ -13,7 +13,13 @@ if (php_sapi_name() !== 'cli') exit();
 
 require_once __DIR__ . '/lib/Main.php';
 
+define('DIR', __DIR__);
+
 BiliOB\Raw::turn(
-    __DIR__ . '/data/full-ranklist.json',
-    __DIR__ . '/data/ranklist.json'
+    DIR . '/data/full-ranklist.json',
+    DIR . '/data/ranklist.json'
+);
+
+$compute = new BiliOB\Watcher(
+    BiliOB\Json::read(DIR . '/data/ranklist.json')
 );
