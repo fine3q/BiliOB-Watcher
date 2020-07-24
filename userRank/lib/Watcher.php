@@ -100,7 +100,7 @@ class Watcher
     private function dumpRegister(string $after)
     {
         $after = strtotime($after);
-        $data = end(self::divideBy($this->data, 'date'));
+        $data = $this->data;
         $vary = [];
         foreach ($data as $value) {
             if (strtotime($value['time']) >= $after) 
