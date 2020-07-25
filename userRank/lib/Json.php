@@ -17,6 +17,7 @@ class Json
      */
     public static function read(string $file)
     {
+        Log::info('json', 'Reading ' . end(explode('/', $file)) . '.');
         return json_decode(
             file_get_contents($file),
             true
@@ -29,6 +30,7 @@ class Json
      */
     public static function put(string $file, array $data)
     {
+        Log::info('json', 'Saving ' . end(explode('/', $file)) . '.');
         return file_put_contents(
             $file,
             json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)

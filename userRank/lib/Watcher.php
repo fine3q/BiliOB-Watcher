@@ -19,6 +19,7 @@ class Watcher
      */
     public function __construct(array $data)
     {
+        Log::info('watcher', 'BiliOB-Watcher constructed.');
         $this->data = $data;
         $this->genHash();
         $this->limitTime('2020-07-16 00:00', '2020-07-23 00:00');
@@ -35,6 +36,7 @@ class Watcher
     {
         foreach ($this->data as $key => $value)
             $this->data[$key]['hash'] = substr(md5(hash('sha256', $value['name'])), 0, 6);
+        Log::success('watcher', 'genHash.');
         return;
     }
 
@@ -51,6 +53,7 @@ class Watcher
                         $return[$i][] = $item;
         foreach ($return as $index => $value)
             Csv::put(DIR . "/data/comp-rank-$index.csv", $value);
+        Log::success('watcher', 'dumpRank.');
         return;
     }
 
@@ -91,6 +94,7 @@ class Watcher
                     $return[$i][] = $item;
         foreach ($return as $index => $value)
             Csv::put(DIR . "/data/comp-vary-$index.csv", $value);
+        Log::success('watcher', 'dumpVary.');
         return;
     }
 
@@ -103,11 +107,12 @@ class Watcher
         $data = $this->data;
         $vary = [];
         foreach ($data as $value) {
-            if (strtotime($value['time']) >= $after) 
+            if (strtotime($value['time']) >= $after)
                 $vary[] = $value;
         }
         $vary = self::multiSort($vary, 'value');
         Csv::put(DIR . "/data/comp-register.csv", $vary);
+        Log::success('watcher', "dumpRegister after $after.");
         return;
     }
 
@@ -128,6 +133,7 @@ class Watcher
         }
 
         $this->data = $data;
+        Log::success('watcher', "limitTime from $starttime to $endtime.");
         return;
     }
 
@@ -143,6 +149,7 @@ class Watcher
             $return[$key] = $value;
         }
         $this->data = $return;
+        Log::success('watcher', 'formatDate.');
         return;
     }
 

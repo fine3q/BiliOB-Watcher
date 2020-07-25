@@ -30,6 +30,7 @@ class Csv
      */
     public static function put(string $file, array $data)
     {
+        Log::info('json', 'Saving ' . end(explode('/', $file)) . '.');
         return file_put_contents(
             $file,
             self::gen($data)
