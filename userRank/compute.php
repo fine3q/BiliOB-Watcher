@@ -23,3 +23,10 @@ echo "\033[1;37m[" . date('Y-m-d H:i:s') . "] coumpute\tConstructing.\n";
 $compute = new BiliOB\Watcher(
     BiliOB\Json::read(DIR . '/data/ranklist.json')
 );
+
+$compute->genHash();
+//$compute->limitTime('2020-07-16 00:00', '2020-07-23 00:00');
+$compute->formatDate();
+$compute->dumpRank();
+$compute->dumpVary();
+$compute->dumpRegister('2020-01-01');

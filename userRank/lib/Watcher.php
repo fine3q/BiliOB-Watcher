@@ -22,18 +22,12 @@ class Watcher
         Log::info('watcher', 'BiliOB-Watcher constructed.');
         Log::warning('watcher', 'Loading ' . count($data) . ' items.');
         $this->data = $data;
-        $this->genHash();
-        $this->limitTime('2020-07-16 00:00', '2020-07-23 00:00');
-        $this->formatDate();
-        $this->dumpRank();
-        $this->dumpVary();
-        $this->dumpRegister('2020-01-01');
     }
 
     /**
      * genHash
      */
-    private function genHash()
+    public function genHash()
     {
         foreach ($this->data as $key => $value)
             $this->data[$key]['hash'] = substr(md5(hash('sha256', $value['name'])), 0, 6);
@@ -44,7 +38,7 @@ class Watcher
     /**
      * dumpRank
      */
-    private function dumpRank()
+    public function dumpRank()
     {
         $return = [[], [], [], [], []];
         foreach (self::divideBy($this->data, 'date') as $class)
@@ -61,7 +55,7 @@ class Watcher
     /**
      * dumpVary
      */
-    private function dumpVary()
+    public function dumpVary()
     {
         $user = [];
         foreach ($this->data as $value) {
@@ -102,7 +96,7 @@ class Watcher
     /**
      * dumpRegister
      */
-    private function dumpRegister(string $after)
+    public function dumpRegister(string $after)
     {
         $after = strtotime($after);
         $data = $this->data;
@@ -120,7 +114,7 @@ class Watcher
     /**
      * limitTime
      */
-    private function limitTime(string $starttime, string $endtime)
+    public function limitTime(string $starttime, string $endtime)
     {
         $starttime = strtotime($starttime);
         $endtime = strtotime($endtime);
@@ -141,7 +135,7 @@ class Watcher
     /**
      * formatDate
      */
-    private function formatDate()
+    public function formatDate()
     {
         $data = $this->data;
         $return = [];

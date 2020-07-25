@@ -69,8 +69,8 @@ const config = {
      * 字段的值与其对应的颜色值
      */
     color: {
-        Chinese: "#1177CC",
-        Japanese: "#667788"
+        flyingsky: "#6cf",
+        Jannchie见齐: "#ec407a"
     },
 
     /**
