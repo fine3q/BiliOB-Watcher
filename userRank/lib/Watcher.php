@@ -20,6 +20,7 @@ class Watcher
     public function __construct(array $data)
     {
         Log::info('watcher', 'BiliOB-Watcher constructed.');
+        Log::warning('watcher', 'Loading ' . count($data) . ' items.');
         $this->data = $data;
         $this->genHash();
         $this->limitTime('2020-07-16 00:00', '2020-07-23 00:00');

@@ -37,7 +37,7 @@ class Log
     static function warning(String $package, String $msg)
     {
         if (self::check()) return false;
-        echo "\033[0;33m[" . date('Y-m-d H:i:s') . "] $package\t$msg\n";
+        echo "\033[1;33m[" . date('Y-m-d H:i:s') . "] $package\t$msg\n";
         return true;
     }
 

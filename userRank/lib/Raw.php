@@ -17,13 +17,14 @@ class Raw
      */
     public static function turn(string $in, string $out)
     {
-        Log::info('raw', 'Turning ' . end(explode('/', $in)) . ' into ' . end(explode('/', $out)) . '.');
-        return Json::put(
+        Json::put(
             $out,
             self::proccess(
                 Json::read($in)
             )
         );
+        Log::success('raw', 'Turning \'' . end(explode('/', $in)) . '\' into \'' . end(explode('/', $out)) . '\'.');
+        return;
     }
 
     /**
