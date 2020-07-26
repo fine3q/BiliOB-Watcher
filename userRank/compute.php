@@ -8,10 +8,20 @@
  */
 
 echo "\033[1;37m[" . date('Y-m-d H:i:s') . "] coumpute\tRunning.\n";
+define('DIR', __DIR__);
 
 require_once __DIR__ . '/lib/Main.php';
 
-define('DIR', __DIR__);
+if (file_exists(DIR . '/data/ranklist.json'))
+    BiliOB\Zip::create(
+        [DIR . '/data/ranklist.json'],
+        DIR . '/archive/ranklist-' . time() . '.zip'
+    );
+
+BiliOB\Zip::extract(
+    DIR . '/data/full-ranklist.zip',
+    DIR . '/data'
+);
 
 BiliOB\Raw::turn(
     DIR . '/data/full-ranklist.json',
