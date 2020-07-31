@@ -35,8 +35,10 @@ class Zip
         Log::info('zip', 'Archiving \'' . end($outdir) . '\'.');
 
         $zip->open($out, \ZipArchive::CREATE);
-        foreach ($in as $file)
-            $zip->addFile($file);
+        foreach ($in as $file) {
+            $indir = explode('/', $file);
+            $zip->addFile($file, end($indir));
+        }
         $zip->close();
 
         return;
