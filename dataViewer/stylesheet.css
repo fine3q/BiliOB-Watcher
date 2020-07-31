@@ -1,0 +1,40 @@
+html {
+    background: #222;
+}
+
+body {
+    background: #fff;
+}
+
+.fileinput {
+    line-height: 1.75;
+}
+
+body,
+#start,
+#count,
+.mdui-valign {
+    width: 1920px;
+    height: 1080px;
+}
+
+#start,
+#count,
+#home,
+#music {
+    display: none;
+}
+
+#playbutton {
+    height: 72px;
+    margin-top: 100px;
+    border-radius: 36px;
+}
+
+#home {
+    position: relative;
+}
+
+#home .mdui-typo-display-4 {
+    font-weight: bold;
+}
