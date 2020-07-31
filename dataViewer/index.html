@@ -9,6 +9,22 @@
         integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
     <link rel="stylesheet" href="./stylesheet.css">
     <link rel="stylesheet" href="./lib/dataVisual/stylesheet.css">
+    <style>
+        #dataVisual .dateLabel {
+            font-size: 40pt;
+        }
+
+        #dataVisual .topLabel,
+        #svgL .dateLabel,
+        #svgL text:nth-of-type(4).growth,
+        #svgR text:nth-of-type(3).growth {
+            display: none;
+        }
+
+        #dataVisual .barInfo {
+            font-size: 20pt;
+        }
+    </style>
 </head>
 
 <body class="mdui-theme-accent-blue">
@@ -16,15 +32,19 @@
         <div class="mdui-valign">
             <div class="mdui-center">
                 <div class="mdui-typo-display-4">BiliOB-Watcher</div>
-                <div class="mdui-typo-display-1 mdui-m-l-1">DataViewer</div>
+                <div class="mdui-typo-display-1 mdui-m-l-1" style="font-weight: bold;">DataViewer</div>
             </div>
-            <div class="mdui-center" style="padding-top: 172px;">
+            <div class="mdui-center" style="padding-top: 168px;">
                 <div class="mdui-m-y-4">
                     <div class="mdui-typo-headline mdui-m-b-1">Home Snackbar</div>
                     <div class="mdui-textfield mdui-p-a-0">
                         <input class="mdui-textfield-input" type="text" placeholder="Text"
                             onchange="global.data.snackBar = this.value" />
                     </div>
+                </div>
+                <div class="mdui-m-y-4">
+                    <div class="mdui-typo-headline mdui-m-b-1">User Rank Data</div>
+                    <input type="file" class="fileinput" id="dataFile" multiple>
                 </div>
                 <div class="mdui-m-y-4">
                     <div class="mdui-typo-headline mdui-m-b-1">Background Music</div>
@@ -39,8 +59,13 @@
                 </div>
                 <button class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-btn-block mdui-btn-raised"
                     id="playbutton" disabled>Play</button>
+                <button class="mdui-btn mdui-ripple mdui-btn-block mdui-m-t-4" style="border-radius: 18px;"
+                    onclick="global.check()">Check</button>
             </div>
         </div>
+        <span class="copyright mdui-typo">
+            &copy; 2020 <a href="https://fsky7.com">FlyingSky</a>.
+        </span>
     </div>
     <div id="count">
         <div class="mdui-valign">
@@ -56,9 +81,36 @@
                 <div class="mdui-typo-display-3">用户排名观察</div>
             </div>
         </div>
-        <div class="snackbar"></div>
+        <div class="mdui-typo-display-1" id="snackbar"></div>
     </div>
-    <canvas id="music"></canvas>
+    <div id="main">
+        <div id="musicdiv">
+            <canvas id="music"></canvas>
+        </div>
+        <div id="dataVisual">
+            <svg width="950" height="1060" id="svgL"></svg>
+            <svg width="950" height="1060" id="svgR"></svg>
+            <svg width="1900" height="1060" id="svgM"></svg>
+        </div>
+    </div>
+    <div id="ending">
+        <div class="inner">
+            <p class="mdui-typo-display-2">
+                数据来源：BiliOB 观测者（https://biliob.com）
+            </p>
+            <p class="mdui-typo-display-2">
+                背景音乐：<span id="bgmname"></span>
+            </p>
+            <p class="mdui-typo-display-2">
+                视频制作：FlyingSky
+            </p>
+            <div class="info">
+                <p>@gen BiliOB-Watcher/dataViewer</p>
+                <p>@date <span id="today"></span></p>
+                <p>@time <span id="continuetime"></span></p>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -70,8 +122,8 @@
 
     <script src="./lib/audioVisual/config.js"></script>
     <script src="./lib/dataVisual/config.js"></script>
-
     <script src="./lib/audioVisual/script.js"></script>
+    <script src="./lib/dataVisual/visual.js"></script>
 
     <script src="./main.js"></script>
 </body>

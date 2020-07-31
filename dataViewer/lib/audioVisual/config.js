@@ -8,7 +8,7 @@ const audioVisualConfig = {
     /**
      * 画布高度
      */
-    height: 70,
+    height: 54,
 
     /**
      * 多倍绘制

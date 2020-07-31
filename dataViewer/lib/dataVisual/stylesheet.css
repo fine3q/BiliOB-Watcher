@@ -1,0 +1,211 @@
+#dataVisual .domain {
+    display: none;
+}
+
+#dataVisual .tick line {
+    stroke: #C0C0BB;
+}
+
+#dataVisual .tick text {
+    fill: #8E8883;
+    font-size: 12pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .label {
+    fill: #5C5C5C;
+    font-size: 15pt;
+    font-family: "Fira Code", "Source Han Sans CN";
+    font-weight: bold
+}
+
+#dataVisual .dateLabel {
+
+    fill: #5C5C5C;
+    display: table-cell;
+    font-size: 60pt;
+    font-weight: bold;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .dateLabelRed {
+
+    fill: #A72E2E;
+    display: table-cell;
+    font-size: 90pt;
+    font-weight: bold;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+
+#dataVisual .days {
+    fill: #5C5C5C;
+    font-weight: bold;
+    font-size: 55pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .topLabel {
+    fill: #5C5C5C;
+    font-weight: bold;
+    font-size: 40pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .top {
+    fill: #5C5C5C;
+    font-weight: bold;
+    font-size: 62pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .value {
+    fill: #8A2E2E;
+    font-size: 20pt;
+    font-weight: 400;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .barInfo {
+    fill: #FFFFFF;
+    font-weight: 800;
+    font-size: 24pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .axis-label {
+    fill: #635F5D;
+    font-size: 32pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .days {
+    fill: r#5C5C5C;
+    font-weight: bold;
+    font-size: 40pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .dayslabel {
+    fill: #5C5C5C;
+    font-weight: bold;
+    font-size: 25pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+#dataVisual .growth {
+    fill: #5C5C5C;
+    font-weight: bold;
+    font-size: 40pt;
+    font-family: "Fira Code", "Source Han Sans CN"
+}
+
+/* MIKU色 */
+#dataVisual .L {
+    fill: #39C5BB;
+}
+
+/* 龙牙绿 */
+#dataVisual .M {
+    fill: #006666
+}
+
+#dataVisual .L {
+    fill: #66CCFF
+}
+
+#dataVisual .N {
+    fill: #EB0000
+}
+
+#dataVisual .O {
+    fill: #009714
+}
+
+#dataVisual .P {
+    fill: #B11111
+}
+
+#dataVisual .Q {
+    fill: #E24000
+}
+
+#dataVisual .R {
+    fill: #8605D1
+}
+
+#dataVisual .S {
+    fill: #00A5BB
+}
+
+#dataVisual .T {
+    fill: #C21178
+}
+
+#dataVisual .U {
+    fill: #00A048
+}
+
+#dataVisual .W {
+    fill: #FFC012
+}
+
+#dataVisual .V {
+    fill: #F39303
+}
+
+#dataVisual .X {
+    fill: #933DDA
+}
+
+#dataVisual .Y {
+    fill: #EE5677
+}
+
+#dataVisual .Z {
+    fill: #C0620B
+}
+
+#dataVisual .H {
+    fill: #787878
+}
+
+#dataVisual .G {
+    fill: #CB1B45
+}
+
+#dataVisual .K {
+    fill: #0775BE
+}
+
+#dataVisual .J {
+    fill: #B49D33
+}
+
+#dataVisual .I {
+    fill: #1B813E
+}
+
+#dataVisual .F {
+    fill: #DD3287
+}
+
+#dataVisual .E {
+    fill: #00AF89
+}
+
+#dataVisual .D {
+    fill: #0F2540
+}
+
+#dataVisual .C {
+    fill: #2EA9DF
+}
+
+#dataVisual .B {
+    fill: #0A83E6
+}
+
+#dataVisual .A {
+    fill: #CF9237
+}
