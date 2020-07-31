@@ -18,7 +18,8 @@ class Zip
         if ($zip->open($in) !== true)
             Log::fatal('zip', 'Unable to open the file.');
 
-        Log::info('zip', 'Unarchiving \'' . end(explode('/', $in)) . '\'.');
+        $indir = explode('/', $in);
+        Log::info('zip', 'Unarchiving \'' . end($indir) . '\'.');
 
         $zip->extractTo($out);
         $zip->close();
@@ -30,7 +31,8 @@ class Zip
     {
         $zip = new \ZipArchive();
 
-        Log::info('zip', 'Archiving \'' . end(explode('/', $out)) . '\'.');
+        $outdir = explode('/', $out);
+        Log::info('zip', 'Archiving \'' . end($outdir) . '\'.');
 
         $zip->open($out, \ZipArchive::CREATE);
         foreach ($in as $file)

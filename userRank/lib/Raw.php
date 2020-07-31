@@ -23,7 +23,9 @@ class Raw
                 Json::read($in)
             )
         );
-        Log::success('raw', 'Turning \'' . end(explode('/', $in)) . '\' into \'' . end(explode('/', $out)) . '\'.');
+        $indir = explode('/', $in);
+        $outdir = explode('/', $out);
+        Log::success('raw', 'Turning \'' . end($indir) . '\' into \'' . end($outdir) . '\'.');
         return;
     }
 

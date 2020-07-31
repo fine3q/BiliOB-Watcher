@@ -30,7 +30,8 @@ class Csv
      */
     public static function put(string $file, array $data)
     {
-        Log::info('csv', 'Saving \'' . end(explode('/', $file)) . '\'.');
+        $filedir = explode('/', $file);
+        Log::info('csv', 'Saving \'' . end($filedir) . '\'.');
         return file_put_contents(
             $file,
             self::gen($data)
