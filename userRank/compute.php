@@ -35,7 +35,8 @@ $compute = new BiliOB\Watcher(
 );
 
 $compute->genHash();
-//$compute->limitTime('2020-07-16 00:00', '2020-07-23 00:00');
+$compute->limitTime('2020-07-16 00:00', '2020-08-01 00:00');
+$compute->limitPerDay(6);
 $compute->formatDate();
 $compute->dumpRank();
 $compute->dumpVary();

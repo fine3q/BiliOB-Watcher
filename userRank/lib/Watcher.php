@@ -149,6 +149,29 @@ class Watcher
     }
 
     /**
+     * limitPerDay
+     */
+    public function limitPerDay(int $lock)
+    {
+        $days = [];
+        foreach (self::divideBy($this->data, 'date') as $time => $value) {
+            $day = date('Y-m-d', strtotime($time));
+            if (!isset($days[$day])) $days[$day] = [];
+            $days[$day][] = $value;
+        }
+        $data = [];
+        foreach ($days as $value) {
+            $need = intval(count($value) / $lock);
+            for ($i = 0; $i < $lock; $i++)
+                if (isset($value[$i * $need])) foreach ($value[$i * $need] as $item)
+                    $data[] = $item;
+        }
+        $this->data = self::multiSort($data, 'date', true);
+        Log::success('watcher', "limitPerDay at $lock.");
+        return;
+    }
+
+    /**
      * multiSort
      */
     private static function multiSort(array $data, string $key, bool $asc = false)
