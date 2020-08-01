@@ -8,7 +8,7 @@ dataVisualConfig.max_number = 20;
 dataVisualConfig.auto_sort = true;
 dataVisualConfig.itemLabel = "BiliOB 观测者排行榜";
 dataVisualConfig.typeLabel = '';
-dataVisualConfig.interval_time = .75;
+dataVisualConfig.interval_time = .6;
 dataVisualConfig.text_x = 1400;
 dataVisualConfig.format = ",.1f";
 dataVisualConfig.dateLabel_x = 725;
@@ -35,7 +35,7 @@ const global = {
         }
     },
     check: () => {
-        //if (global.data.audio === null) return;
+        if (global.data.audio === null) return;
         if (global.data.userRank.rank[0] === null) return;
         if (global.data.userRank.rank[1] === null) return;
         if (global.data.userRank.rank[2] === null) return;
