@@ -70,6 +70,7 @@ const dataVisualConfig = {
      */
     color: {
         flyingsky: "#6cf",
+        FlyingSky: "#6cf",
         Jannchie见齐: "#ec407a"
     },
 
