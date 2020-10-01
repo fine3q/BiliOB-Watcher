@@ -12,16 +12,15 @@ define('DIR', __DIR__);
 
 require_once __DIR__ . '/lib/Main.php';
 
-/*
+
 if (file_exists(DIR . '/data/ranklist.json'))
     BiliOB\Zip::create(
         [DIR . '/data/ranklist.json'],
         DIR . '/archive/ranklist-' . time() . '.zip'
     );
-*/
 
 BiliOB\Zip::extract(
-    DIR . '/data/ranklist.zip',
+    DIR . '/data/full-ranklist.zip',
     DIR . '/data'
 );
 
@@ -37,8 +36,8 @@ $compute = new BiliOB\Watcher(
 );
 
 $compute->genHash();
-$compute->limitTime('2020-08-01 00:00', '2020-08-10 00:00');
-$compute->limitPerDay(8);
+$compute->limitTime('2020-09-16 00:00', '2020-10-01 00:00');
+$compute->limitPerDay(6);
 $compute->formatDate();
 $compute->dumpRank();
 $compute->dumpVary();

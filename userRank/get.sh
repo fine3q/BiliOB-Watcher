@@ -1,1 +1,1 @@
-curl https://api.fsky7.com/BiliOBhelper/full-ranklist.zip?auth=FlyingSky > data/full-ranklist.zip
+curl "https://api.fsky7.com/BiliOBhelper/ranklist.zip?auth=FlyingSky&date=2020-09-14" > data/full-ranklist.zip
