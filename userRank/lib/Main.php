@@ -13,3 +13,4 @@ require_once __DIR__ . '/Log.php';
 require_once __DIR__ . '/Zip.php';
 require_once __DIR__ . '/Json.php';
 require_once __DIR__ . '/Watcher.php';
+require_once __DIR__ . '/Keyword.php';
