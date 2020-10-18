@@ -39,11 +39,11 @@ class Raw
         foreach ($raw as $class)
             foreach ($class['data'] as $item)
                 $return[] = [
-                    'name'  => $item['id']['counter'],
+                    'name'  => substr(md5($item['id']['timestamp']), 0, 6),
                     'show'  => $item['nickName'],
                     'value' => $item['exp'],
                     'date'  => $class['time'],
-                    'time'  => date('Y-m-d H:i:s', $item['id']['timeSecond']),
+                    'time'  => date('Y-m-d H:i:s', $item['id']['timestamp']),
                 ];
         return $return;
     }
