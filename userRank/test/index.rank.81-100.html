@@ -4,16 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="./source/stylesheet.css">
+    <link rel="stylesheet" href="../source/stylesheet.css">
     <style>
-        #svg1 text:nth-of-type(4).growth,
-        #svg2 text:nth-of-type(3).growth,
-        .topLabel {
-            display: none;
-        }
-
         .dateLabel {
             font-size: 40pt;
+        }
+
+        .topLabel {
+            display: none;
         }
 
         .barInfo {
@@ -26,24 +24,24 @@
     <input type="file" id="inputfile">
     <svg width="1900" height="1060"></svg>
 
-    <script src="./source/d3.js"></script>
-    <script src="./source/config.js"></script>
+    <script src="../source/d3.js"></script>
+    <script src="../source/config.js"></script>
     <script>
         config.show_mode = 1;
         config.max_number = 20;
         config.auto_sort = true;
-        config.divide_color_by = "show";
         config.itemLabel = "BiliOB 观测者排行榜";
-        config.typeLabel = '2020 年新用户 |';
-        config.interval_time = .1;
-        config.text_x = 930;
+        config.typeLabel = '';
+        config.interval_time = .3;
+        config.text_x = 1400;
         config.format = ",.1f";
         config.dateLabel_x = 1650;
         config.dateLabel_y = -50;
         config.allow_up = true;
-        config.bar_name_max = 32;
+        config.bar_name_max = 12;
+        config.offoset_left = 80;
     </script>
-    <script src="./source/visual.js"></script>
+    <script src="../source/visual.js"></script>
 </body>
 
 </html>
