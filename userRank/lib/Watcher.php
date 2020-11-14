@@ -43,13 +43,22 @@ class Watcher
         $return = [[], [], [], [], []];
         foreach (self::divideBy($this->data, 'date') as $class)
             for ($i = 0; $i < 5; $i++)
-                foreach (self::multiSort($class, 'value') as $index => $item)
+                foreach (self::multiSort(self::deDuplication($class), 'value') as $index => $item)
                     if (20 * $i <= $index && $index < 20 + 20 * $i)
                         $return[$i][] = $item;
         foreach ($return as $index => $value)
             Csv::put(DIR . "/data/comp-rank-$index.csv", $value);
         Log::success('watcher', 'dumpRank.');
         return;
+    }
+
+    private static function deDuplication(array $in)
+    {
+        $out = [];
+        foreach ($in as $item)
+            if (!in_array($item, $out))
+                $out[] = $item;
+        return $out;
     }
 
     /**
@@ -105,7 +114,7 @@ class Watcher
             if (strtotime($value['time']) >= $after)
                 $vary[] = $value;
         }
-        $vary = self::multiSort($vary, 'value');
+        $vary = self::multiSort(self::deDuplication($vary), 'value');
         Csv::put(DIR . "/data/comp-register.csv", $vary);
         Log::success('watcher', "dumpRegister after $after.");
         return;
